@@ -26,9 +26,6 @@ Date: January 2023
 import gym
 # instead of gym, import gymnasium 
 # import gymnasium as gym
-
-import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
 import time
 from functions import SARSA_Learning
@@ -82,24 +79,24 @@ SARSA1.computeFinalPolicy()
 finalLearnedPolicy=SARSA1.learnedPolicy
 
 # simulate the learned policy for verification
-
-# to interpret the final learned policy you need this information
-# actions: 0: LEFT, 1: DOWN, 2: RIGHT, 3: UP
-# let us simulate the learned policy
-# this will reset the environment and return the agent to the initial state
-env=gym.make('FrozenLake-v1', desc=None, map_name="4x4", is_slippery=False,render_mode='human')
-(currentState,prob)=env.reset()
-env.render()
-time.sleep(2)
-# since the initial state is not a terminal state, set this flag to false
-terminalState=False
-for i in range(100):
-    # here we step and return the state, reward, and boolean denoting if the state is a terminal state
-    if not terminalState:
-        (currentState, currentReward, terminalState,_,_) = env.step(int(finalLearnedPolicy[currentState]))
-        time.sleep(1)
-    else:
-        break
-time.sleep(2)
+while True:
+    # to interpret the final learned policy you need this information
+    # actions: 0: LEFT, 1: DOWN, 2: RIGHT, 3: UP
+    # let us simulate the learned policy
+    # this will reset the environment and return the agent to the initial state
+    env=gym.make('FrozenLake-v1', desc=None, map_name="4x4", is_slippery=False,render_mode='human')
+    (currentState,prob)=env.reset()
+    env.render()
+    time.sleep(2)
+    # since the initial state is not a terminal state, set this flag to false
+    terminalState=False
+    for i in range(100):
+        # here we step and return the state, reward, and boolean denoting if the state is a terminal state
+        if not terminalState:
+            (currentState, currentReward, terminalState,_,_) = env.step(int(finalLearnedPolicy[currentState]))
+            time.sleep(1)
+        else:
+            break
+    time.sleep(0.5)
 env.close()
 
