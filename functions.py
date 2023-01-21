@@ -63,16 +63,16 @@ class SARSA_Learning:
         # Returns a random real number in the half-open interval [0.0, 1.0)
         randomNumber=np.random.random()
           
+        if index>1000:
+            self.epsilon=0.9*self.epsilon
         
         # if this condition is satisfied, we are exploring, that is, we select random actions
         if randomNumber < self.epsilon:
-            self.epsilon=0.9*self.epsilon
             # returns a random action selected from: 0,1,...,actionNumber-1
             return np.random.choice(self.actionNumber)            
         
         # otherwise, we are selecting greedy actions
         else:
-            self.epsilon=0.9*self.epsilon
             # we return the index where actionValueMatrixEstimate[state,:] has the max value
             return np.random.choice(np.where(self.Qmatrix[state,:]==np.max(self.Qmatrix[state,:]))[0])
             # here we need to return the minimum index since it can happen
@@ -151,6 +151,25 @@ class SARSA_Learning:
                 
                 
                 
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            
+            
+            
+            
+        
+        
+        
+        
+        
+        
                 
                 
                 
